@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rthymer.mydiary.dao.DiaryDao">
+    <select id="queryDiaryEntry" resultType="com.rthymer.mydiary.entity.DiaryEntry">
+        SELECT diary_id, owner_name, date_time, text_content, img_path
+        FROM diarytable
+        ORDER BY date_time
+        DESC
+    </select>
+    <select id="queryDiaryById" resultType="com.rthymer.mydiary.entity.DiaryEntry">
+        SELECT diary_id, owner_name, date_time, text_content, img_path
+        FROM diarytable
+        WHERE diary_id=#{diaryId}
+    </select>
+    <insert id="insertDiary" useGeneratedKeys="true" keyProperty="diaryId"
+            keyColumn="diary_id" parameterType="com.rthymer.mydiary.entity.DiaryEntry">
+        INSERT INTO
+        diarytable(owner_name, date_time, text_content, img_path)
+        VALUES
+        (#{ownerName},#{dateTime},#{textContent},#{imgPath})
+    </insert>
+    <update id="updateDiary" parameterType="com.rthymer.mydiary.entity.DiaryEntry">
+        UPDATE diarytable
+        <set>
+            <if test="ownerName!=null">owner_name=#{ownerName},</if>
+            <if test="dateTime!=null">date_time=#{dateTime},</if>
+            <if test="textContent!=null">text_content=#{textContent},</if>
+            <if test="imgPath!=null">img_path=#{imgPath}</if>
+        </set>
+        WHERE diary_id=#{diaryId}
+    </update>
+    <delete id="deleteDiary">
+        DELETE FROM diarytable
+        WHERE diary_id=#{diaryId}
+    </delete>
+</mapper>
