@@ -20,7 +20,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Date;
-import java.util.List;
 
 
 @Controller
@@ -103,9 +102,9 @@ class SinaWeiboRawPosting {
         HtmlPage page = webClient.getPage(baseUrl);
         Thread.sleep(1000);
         HtmlInput usr = (HtmlInput) page.getElementById("loginName");
-        usr.setValueAttribute("18627795737");
+        usr.setValueAttribute("xxx");
         HtmlInput pwd = (HtmlInput) page.getElementById("loginPassword");
-        pwd.setValueAttribute("fuweijie110");
+        pwd.setValueAttribute("xxx");
         DomElement button = page.getElementById("loginAction");
         page = (HtmlPage) button.click();
         Thread.sleep(1000);
