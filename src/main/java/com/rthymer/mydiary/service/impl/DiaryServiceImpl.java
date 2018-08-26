@@ -84,4 +84,23 @@ public class DiaryServiceImpl implements DiaryService {
             throw new RuntimeException("日记ID居然为空？");
         }
     }
+
+    @Transactional
+    @Override
+    public boolean deleteDiaries(List<Integer> diaryIdList) {
+        for (int diaryId : diaryIdList) {
+            if (diaryId <= 0) throw new RuntimeException("日记id不符合要求！");
+        }
+
+        try {
+            int returnNum = diaryDao.deleteDiaries(diaryIdList);
+            if (returnNum > 0) {
+                return true;
+            } else {
+                throw new RuntimeException("删除多项日记失败了。。。");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("删除多项日记失败了:" + e.getMessage());
+        }
+    }
 }

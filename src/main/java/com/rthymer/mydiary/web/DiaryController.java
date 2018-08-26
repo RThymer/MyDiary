@@ -1,17 +1,15 @@
 package com.rthymer.mydiary.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.rthymer.mydiary.entity.DiaryEntry;
 import com.rthymer.mydiary.service.DiaryService;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @ResponseBody
@@ -58,4 +56,30 @@ public class DiaryController {
         return modelMap;
     }
 
+    /* Not Well Coded
+    @RequestMapping(value = "/removediaries", method = RequestMethod.POST)
+    private Map<String, Object> removeDiaries(@RequestBody Map<String,Object> params) {
+        Object values = params.get("diaryIdList");
+
+        @SuppressWarnings("unchecked")
+        List<String> list = (ArrayList<String>) values;
+
+        int[] diaryIdList = new int[list.size()];
+        for (int index = 0; index < list.size(); index++) {
+            diaryIdList[index] = Integer.parseInt(list.get(index));
+        }
+
+        Map<String, Object> modelMap = new HashMap<>();
+        modelMap.put("success", diaryService.deleteDiaries(diaryIdList));
+        return modelMap;
+    }
+    */
+
+    @RequestMapping(value = "/removediaries", method = RequestMethod.POST)
+    private Map<String, Object> removeDiaries(@RequestBody Map<String, List<Integer>> params) {
+        List<Integer> idList = params.get("diaryIdList");
+        Map<String, Object> modelMap = new HashMap<>();
+        modelMap.put("success", diaryService.deleteDiaries(idList));
+        return modelMap;
+    }
 }

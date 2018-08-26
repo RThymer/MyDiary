@@ -43,4 +43,12 @@ public interface DiaryService {
      * @return
      */
     boolean deleteDiary(int diaryId);
+
+    /**
+     * Delete an exist diary
+     *
+     * @param diaryId
+     * @return
+     */
+    boolean deleteDiaries(List<Integer> diaryIdList);
 }

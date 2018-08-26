@@ -44,4 +44,12 @@ public interface DiaryDao {
      * @return
      */
     int deleteDiary(int diaryId);
+
+    /**
+     * Delete exist diaries
+     *
+     * @param diaryId
+     * @return
+     */
+    int deleteDiaries(List<Integer> diaryIdList);
 }

@@ -1,5 +1,6 @@
 package com.rthymer.mydiary.web;
 
+import net.coobird.thumbnailator.Thumbnails;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +39,10 @@ public class PicsController {
         String fileName = request.getParameter("filename");
         String realPath = "/home/rthymer/Documents/DiaryPics/";
         if (fileName != null) {
-            File file = new File(realPath, fileName);
-            if (file.exists()) {
+            File fileOrigin = new File(realPath, fileName);
+            File fileScale = new File(realPath, "scaled_" + fileName);
+            scalePics(fileOrigin, fileScale);
+            if (fileScale.exists()) {
                 response.setContentType("application/force-download");
                 response.addHeader("Content-Disposition",
                         "attachment;fileName=" + fileName);
@@ -47,7 +50,7 @@ public class PicsController {
                 FileInputStream fis = null;
                 BufferedInputStream bis = null;
                 try {
-                    fis = new FileInputStream(file);
+                    fis = new FileInputStream(fileScale);
                     bis = new BufferedInputStream(fis);
                     OutputStream os = response.getOutputStream();
                     int i = bis.read(buffer);
@@ -55,7 +58,6 @@ public class PicsController {
                         os.write(buffer, 0, i);
                         i = bis.read(buffer);
                     }
-                    System.out.println("success");
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -78,6 +80,14 @@ public class PicsController {
             }
         }
         return null;
+    }
+
+    private void scalePics(File sourcePath, File destinationPath) {
+        try {
+            Thumbnails.of(sourcePath).size(300, 200).toFile(destinationPath);
+        } catch (IOException e) {
+            throw new RuntimeException("Error while scaling pics...");
+        }
     }
 
 }

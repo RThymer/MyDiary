@@ -31,8 +31,17 @@
         </set>
         WHERE diary_id=#{diaryId}
     </update>
-    <delete id="deleteDiary">
+    <delete id="deleteDiary" parameterType="int">
         DELETE FROM diarytable
         WHERE diary_id=#{diaryId}
     </delete>
+    <delete id="deleteDiaries" parameterType="java.util.List">
+        DELETE FROM diarytable
+        WHERE diary_id IN (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+
 </mapper>
