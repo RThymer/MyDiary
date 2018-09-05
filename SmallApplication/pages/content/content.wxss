@@ -1,0 +1,45 @@
+/* pages/content/content.wxss */
+page {
+  background-color: #f3f3f3;
+}
+
+.date_title {
+  color: #aaa;
+  margin-top: 10%;
+  margin-left: 5%;
+  width:90%;
+  font-size: 28rpx;
+}
+
+.input_section {
+  background-color: #ffffff;
+  margin-top: 10%;
+  height: 10%;
+  width: 90%;
+  margin-left: 5%
+}
+
+.img_view {
+  margin-top: 5%;
+}
+
+.img_show {
+  width: 100%
+}
+
+.btn_area {
+  margin-top: 15%;
+  
+}
+
+.pic_button {
+  float: left;
+  margin-left: 5%;
+  width: 40%;
+}
+
+.save_button {
+  float: left;
+  margin-left: 10%;
+  width: 40%;
+}

@@ -1,0 +1,16 @@
+<!--pages/content/content.wxml-->
+
+<view class='date_title'>
+  <text>记录日期： {{dateTime}}</text>
+</view>
+
+  <view class='input_section'>
+    <textarea value='{{textContent}}' bindinput='input_text' placeholder='内容为空'></textarea>
+  </view>
+  <view class='img_view'>
+    <image class='img_show' src='{{imgPath}}' style='height: 200px;' mode='aspectFit'></image>
+  </view>
+  <view class='btn_area'>
+    <button class='pic_button' type='default' size="default" bindtap="picButtonTap">选图</button>
+    <button class='save_button' type='primary' size="default" bindtap='saveButtonTap'>保存</button>
+  </view>

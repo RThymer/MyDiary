@@ -1,0 +1,73 @@
+/* pages/contentList.wxss */
+page{
+  background-color: #e3e3e3c7
+}
+
+.scroll_content_list {
+  overflow: hidden;
+  width: 98%;
+  height: 1090rpx;
+  padding: 1% 1% 1% 1%;
+}
+
+.single_content {
+  
+  font-size: 25rpx;
+  display: block;
+  margin-top: 1%;
+  
+  background-color: #ffffff
+}
+
+.content_title {
+  color: #aaa;
+  float: left;
+  margin-left: 3%
+}
+
+.check_sync {
+  float: right;
+  margin-top: 2%;
+  margin-right: 3%
+}
+
+.content_text {
+  background-color: #fefefe;
+  color: #1d1d1d;
+  font-size: 32rpx;
+  float: left;
+  width: 80%;
+  margin-top: 1%;
+  margin-left: 10%;
+}
+
+.img_view {
+  margin-top: 5%;
+}
+
+.img_show {
+  width: 100%
+}
+
+.button {
+  display: block;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.warn_button {
+  float: left;
+  width: 30%
+}
+
+.sync_button {
+  margin-left: 4.4%;
+  float: left;
+  width: 30%
+}
+
+.new_button {
+  margin-left: 4.4%;
+  float: left;
+  width: 30%
+}
